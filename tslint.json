@@ -1,0 +1,16 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "linterOptions": {
+      "exclude": [
+        "node_modules/**" // 不加的话会把node_modules的ts也都检测到
+      ]
+    },
+    "jsRules": {},
+    "rules": {
+      "no-console": false
+    },
+    "rulesDirectory": []
+}
