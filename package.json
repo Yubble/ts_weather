@@ -11,6 +11,9 @@
     "tslint": "^5.20.1",
     "typescript": "^3.7.5"
   },
+  "scripts": {
+    "search": "yarn ts-node src/index.ts -c"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "yarn tslint -c tslint.json './**/*.ts'"
@@ -18,6 +21,7 @@
   },
   "dependencies": {
     "@types/node": "^13.1.8",
+    "axios": "^0.19.1",
     "colors": "^1.4.0",
     "commander": "^4.1.0"
   }
