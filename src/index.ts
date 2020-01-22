@@ -13,12 +13,18 @@ import commander from "commander";
 
 commander
   .version("0.1.0")
+  .description("这是一个天气预报工具")
   .option("-c, --city [name]", "Add city name")
+  // action方法何以获取到入参的所有信息
+  // .action(cmd => {
+  //   console.log('cmd is ', cmd)
+  // })
   // 获取命令行参数用方括号和尖括号都行
   // .option("-p, --pizza-type <type>", "flavour of pizza")
   .parse(process.argv);
 
 if (process.argv.slice(2).length === 0) {
+  // 如果没有输入城市地址，提示用户输入
   commander.outputHelp(colors.red);
   // 杀掉Node进程，相当于return
   process.exit();
@@ -54,7 +60,7 @@ async function getWeather(city: string) {
     const response = await axios.get(url);
     const live = response.data.lives[0];
     log(colors.yellow(live.reporttime));
-    log(colors.white(`${live.province} ${live.city}`));
+    log(colors.gray(`${live.province} ${live.city}`));
     log(colors.green(`${live.weather} ${live.temperature} 度`));
   } catch {
     log(colors.red("天气服务出现异常"));
