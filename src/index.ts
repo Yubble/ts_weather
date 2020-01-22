@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-01-19 19:56:12
- * @LastEditTime : 2020-01-22 21:01:51
+ * @LastEditTime : 2020-01-22 21:04:38
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /tsWeatherForecast/ts_weather/index.ts
@@ -65,8 +65,8 @@ async function getWeather(city: string) {
   log(colors.green(`${weatherRes.weather} ${weatherRes.temperature} 度`));
 
   process.stdout.write("请继续输入城市名称：");
-  process.stdin.on("data", async input => {
-    let inpTxt = input.toString().trim();
+  process.stdin.on("data", async (input) => {
+    const inpTxt = input.toString().trim();
     if (inpTxt === "") {
       process.exit();
     }
