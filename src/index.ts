@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-01-19 19:56:12
- * @LastEditTime : 2020-01-19 20:05:17
+ * @LastEditTime : 2020-01-22 21:01:51
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /tsWeatherForecast/ts_weather/index.ts
@@ -52,15 +52,32 @@ async function getWeather(city: string) {
   try {
     const url = `${URL}?city=${encodeURI(city)}&key=${KEY}`;
     const response = await axios.get(url);
-    const live = response.data.lives[0];
-    log(colors.yellow(live.reporttime));
-    log(colors.white(`${live.province} ${live.city}`));
-    log(colors.green(`${live.weather} ${live.temperature} 度`));
+    return response.data.lives[0];
   } catch {
     log(colors.red("天气服务出现异常"));
   }
 }
-getWeather(commander.city);
+
+(async () => {
+  const weatherRes = await getWeather(commander.city);
+  log(colors.yellow(weatherRes.reporttime));
+  log(colors.white(`${weatherRes.province} ${weatherRes.city}`));
+  log(colors.green(`${weatherRes.weather} ${weatherRes.temperature} 度`));
+
+  process.stdout.write("请继续输入城市名称：");
+  process.stdin.on("data", async input => {
+    let inpTxt = input.toString().trim();
+    if (inpTxt === "") {
+      process.exit();
+    }
+    const res = await getWeather(inpTxt);
+    log(colors.yellow(res.reporttime));
+    log(colors.white(`${res.province} ${res.city}`));
+    log(colors.green(`${res.weather} ${res.temperature} 度`));
+    process.stdout.write("请继续输入城市名称：");
+  });
+})();
+
 // console.log('opts is ', commander.opts())
 // console.log("city is ", commander.city);
 // console.log('pizza is ', commander.pizzaType)

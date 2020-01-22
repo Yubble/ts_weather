@@ -12,7 +12,8 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "search": "yarn ts-node src/index.ts -c"
+    "search": "yarn ts-node src/index.ts -c",
+    "practice": "yarn ts-node src/process.ts"
   },
   "husky": {
     "hooks": {
