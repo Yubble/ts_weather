@@ -15,12 +15,6 @@ commander
   .version("0.1.0")
   .description("这是一个天气预报工具")
   .option("-c, --city [name]", "Add city name")
-  // action方法何以获取到入参的所有信息
-  // .action(cmd => {
-  //   console.log('cmd is ', cmd)
-  // })
-  // 获取命令行参数用方括号和尖括号都行
-  // .option("-p, --pizza-type <type>", "flavour of pizza")
   .parse(process.argv);
 
 if (process.argv.slice(2).length === 0) {
@@ -83,8 +77,3 @@ async function getWeather(city: string) {
     process.stdout.write("请继续输入城市名称：");
   });
 })();
-
-// console.log('opts is ', commander.opts())
-// console.log("city is ", commander.city);
-// console.log('pizza is ', commander.pizzaType)
-// console.log("hello ts-weather");
